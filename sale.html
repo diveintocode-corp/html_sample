@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DIC cafe</title>
+    <link href="css/nomalize.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/menu.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
+  </head>
+  <body>
+    <header class="header">
+      <a href="index.html"><img src="image/sample_logo_k.png" class="logo"></a>
+      <nav>
+        <ul class="global_nav">
+          <a href="index.html" class="global_nav_item">
+            <li>Home</li>
+          </a>
+          <a href="blueberry_pancakes.html" class="global_nav_item">
+            <li>Menu</li>
+          </a>
+          <a href="contact.html" class="global_nav_item">
+            <li>Contact</li>
+          </a>
+        </ul>
+      </nav>
+    </header>
+    <div class="menu_key section_inner">
+    </div>
+    <section class="section_inner">
+      <div class="section_title">
+        <h1>コーヒー豆販売</h1>
+      </div>
+    </section>
+
+    <section class="section_inner menu_section">
+      <div class="center">
+        <h1 class="menu_title">ラインナップ</h1>
+      </div>
+      <ul class="menu_list coffee_menu">
+        <li class="caffee_menu_list_item">
+          <div class="caffee_menu_content">
+            <h2 class="menu_item_title">オリジナルブレンド200g</h2>
+            <p class="caffee_menu_price">500円</p>
+          </div>
+          <img src="image/sample_cafe1.jpg" class="caffee_menu_image">
+        </li>
+        <li class="caffee_menu_list_item">
+          <div class="caffee_menu_content">
+            <h2 class="menu_item_title">オリジナルブレンド500g</h2>
+            <p class="caffee_menu_price">900円</p>
+          </div>
+          <img src="image/sample_cafe1.jpg" class="caffee_menu_image">
+        </li>
+        <li class="caffee_menu_list_item">
+          <div class="caffee_menu_content">
+            <h2 class="menu_item_title">スペシャルブレンド200g</h2>
+            <p class="caffee_menu_price">700円</p>
+          </div>
+          <img src="image/sample_cafe3.jpg" class="caffee_menu_image">
+        </li>
+        <li class="caffee_menu_list_item">
+          <div class="caffee_menu_content">
+            <h2 class="menu_item_title">スペシャルブレンド500g</h2>
+            <p class="caffee_menu_price">1200円</p>
+          </div>
+          <img src="image/sample_cafe3.jpg" class="caffee_menu_image">
+        </li>
+      </ul>
+      <h2>送料のご案内</h2>
+      <ul>
+        <li>・合計金額が2000円未満で送料500円</li>
+        <li>・2000円以上で250円</li>
+        <li>・3000円以上で無料</li>
+      </ul>
+    </section>
+
+    <section class="section_inner">
+      <h2>ご注文</h2>
+      <form>
+        <p>商品を選択してください</p>
+        <div>
+          <select id="product" required>
+            <option hidden value="0">選択してください</option>
+            <option value="500">オリジナルブレンド200g 500円</option>
+            <option value="900">オリジナルブレンド500g 900円</option>
+            <option value="700">スペシャルブレンド200g 700円</option>
+            <option value="1200">スペシャルブレンド500g 1200円</option>
+          </select>
+          <p>数量を選択してください</p>
+          <input type="number" min="1" max="5" id="number" required>
+        </div>
+        <br>
+        <input type="button" class="btn" value="追加する" onclick="add()">
+        <input type="button" class="btn" value="合計金額" onclick="calc()">
+      </form>
+    </section>
+    <footer class="footer">
+      <nav>
+        <ul class="footer_nav">
+          <a href="index.html" class="footer_nav_item">
+            <li>Home</li>
+          </a>
+          <a href="blueberry_pancakes.html" class="footer_nav_item">
+            <li>Menu</li>
+          </a>
+          <a href="contact.html" class="footer_nav_item">
+            <li>Contact</li>
+          </a>
+          <a href="contact.html" class="footer_nav_item">
+            <li>
+              <img src="image/sample_logo_w.png" class="footer_logo">
+            </li>
+          </a>
+        </ul>
+      </nav>
+      <p class="footer_right">© DIVE INTO CODE Corp. All RIGHTS RESERVED.</p>
+    </footer>
+    <style>
+      .btn {
+        display: inline-block;
+        padding: .8rem 2rem;
+        z-index: 10;
+        text-align: center;
+        border-radius: 5px;
+        background: rgba(127,136,182,1);
+        color: white;
+      }
+    </style>
+    <script>
+      let purchases = [];
+      function add() {
+        const price = document.getElementById("product").value;
+        const number = document.getElementById("number").value;
+        let purchase = {
+          price: price,
+          number: number,
+        };
+        purchases.push(purchase)
+        window.alert(`${display()}\n小計${subtotal()}円`)
+      }
+      function display() {
+        return purchases.map(function(purchase) {
+          return `${purchase.price}円が${purchase.number}点`
+        })
+      };
+      function subtotal() {
+        return purchases.reduce(function(prev,purchase) {
+          return prev + purchase.price * purchase.number 
+        }, 0)
+      }
+      function calc() {
+        let sum = subtotal();
+        let postage = 0;
+         if (sum == 0 || sum >= 3000) {
+           postage = 0
+         } else if (sum < 1000){
+           postage = 500
+         } else {
+           postage = 250
+         }
+         window.alert(`小計は${sum}円、送料は${postage}円です。合計は${sum + postage}円です`);
+         purchases = [];
+      }
+    </script>
+  </body>
+</html>
