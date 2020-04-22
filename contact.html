@@ -4,7 +4,7 @@
     <title>DIC cafe</title>
     <link href="css/nomalize.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
-    <link href="css/menu.css" rel="stylesheet">
+    <link href="css/contact.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
   </head>
   <body>
@@ -28,8 +28,51 @@
     </div>
     <section class="section_inner">
       <div class="section_title">
-        <h1>お問い合わせ</h1>
+        <h1>CONTACT</h1>
+        <p>お問い合わせ</p>
       </div>
+      <form>
+        <table class="contact">
+          <tr class="contact_line">
+            <th class="contact_sign">お名前</th>
+            <td class="contact_input"><input type="text"></td>
+          </tr>
+          <tr class="contact_line">
+            <th class="contact_sign">ご連絡先</th>
+            <td class="contact_input"><input type="text"></td>
+          </tr>
+          <tr class="contact_line">
+            <th class="contact_sign">お住いの地域</th>
+            <td class="contact_input">
+              <select id="product" required>
+                <option hidden value="0">選択してください</option>
+                <option value="北海道">北海道</option>
+                <option value="東北">東北</option>
+                <option value="関東">関東</option>
+                <option value="中部">中部</option>
+                <option value="近畿">近畿</option>
+                <option value="中国・四国">中国・四国</option>
+                <option value="九州">九州</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="contact_content">
+            <th class="contact_sign">内容</th>
+            <td class="contact_input"><textarea></textarea></td>
+          </tr>
+        </table>
+        <div class="personal_information">
+          個人情報の取り扱いについて
+        </div>
+        <div class="center">
+          <input type="checkbox">個人情報の取り扱いに同意する
+        </div>
+        <div class="contact_btn_area">
+          <input type="reset" class="contact_btn reset_btn" value="リセット">
+          <input type="submit" class="contact_btn submit_btn" value="送信する">
+        </div>
+      </form>
+      
     </section>
     <footer class="footer">
       <nav>
