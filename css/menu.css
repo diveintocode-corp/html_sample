@@ -21,9 +21,17 @@
 .side_menu_item {
   padding: 20px 10px;
   border-bottom: solid #42210b 1px;
+  display: block;
+  text-decoration: none;
 }
 .side_menu_item:hover {
   background: rgba(83,71,65,.3);
+}
+.side_ad {
+  color: #fff;
+  background: rgba(83,71,65,.7);
+  padding: 20px;
+  margin: 30px 0;
 }
 .menu_image {
   width: 100%;
