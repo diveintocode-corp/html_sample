@@ -3,14 +3,14 @@
   <head>
     <title>DIC cafe</title>
     <link href="css/nomalize.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
     <link href="css/contact.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <nav class="header">
-        <a href="index.html"><img src="image/sample_logo_k.png" class="logo"></a>
+    <header class="sub_header">
+      <nav class="header_nav">
+        <a href="index.html"><img src="images/sample_logo_k.png" class="logo"></a>
         <ul class="global_nav">
           <a href="index.html" class="global_nav_item">
             <li>Home</li>
@@ -23,47 +23,45 @@
           </a>
         </ul>
       </nav>
-      <div class="menu_key section_inner">
-      </div>
     </header>
     <section class="section_inner">
       <div class="section_title">
         <h1>CONTACT</h1>
         <p>お問い合わせ</p>
       </div>
-      <form>
+      <form action="#" method="POST">
         <table class="contact">
           <tr class="contact_line">
-            <td class="contact_sign">お名前</td>
-            <td class="contact_input"><input type="text" name="name" value=""></td>
+            <td class="contact_sign"><label for="name">お名前</label></td>
+            <td class="contact_input"><input type="text" name="name" id="name"></td>
           </tr>
           <tr class="contact_line">
-            <td class="contact_sign">ご連絡先</td>
-            <td class="contact_input"><input type="text"></td>
+            <td class="contact_sign"><label for="phonenumber">ご連絡先</label></td>
+            <td class="contact_input"><input type="number" name="phonenumber" id="phonenumber"></td>
           </tr>
           <tr class="contact_line">
-            <td class="contact_sign">お住いの地域</td>
-            <td class="contact_input">
-              <select id="product" required>
-                <option hidden value="0">選択してください</option>
-                <option value="北海道">北海道</option>
-                <option value="東北">東北</option>
-                <option value="関東">関東</option>
-                <option value="中部">中部</option>
-                <option value="近畿">近畿</option>
-                <option value="中国・四国">中国・四国</option>
-                <option value="九州">九州</option>
+            <td class="contact_sign"><label for="region">お住いの地域</label></td>
+            <td>
+              <select id="region">
+                <option value="0">選択してください</option>
+                <option value="1">北海道</option>
+                <option value="2">東北</option>
+                <option value="3">関東</option>
+                <option value="4">中部</option>
+                <option value="5">近畿</option>
+                <option value="6">中国・四国</option>
+                <option value="7">九州</option>
               </select>
             </td>
           </tr>
           <tr class="contact_content">
-            <td class="contact_sign">内容</td>
-            <td class="contact_input"><textarea></textarea></td>
+            <td class="contact_sign"><label for="content">内容</label></td>
+            <td class="contact_input"><textarea name="content" id="content"></textarea></td>
           </tr>
         </table>
         <div class="contact_btn_area">
-          <input type="reset" class="contact_btn reset_btn" value="リセット">
-          <input type="submit" class="contact_btn submit_btn" value="送信する">
+          <button type="reset" class="contact_btn reset_btn">リセット</button>
+          <button type="submit" class="contact_btn submit_btn">送信する</button>
         </div>
       </form>
     </section>
@@ -81,7 +79,7 @@
           </a>
           <a href="index.html" class="footer_nav_item">
             <li>
-              <img src="image/sample_logo_w.png" class="footer_logo">
+              <img src="images/sample_logo_w.png" class="footer_logo">
             </li>
           </a>
         </ul>

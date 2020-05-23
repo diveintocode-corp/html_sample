@@ -1,6 +1,6 @@
 .menu_key {
   height: 100px;
-  background: url("../image/sample_key.jpg") no-repeat center;
+  background: url("../images/sample_key.jpg") no-repeat center;
   background-size: cover;
 }
 .wrapper {
@@ -14,7 +14,7 @@
   width: 200px;
 }
 .side_menu_title {
-  font-family: "Sawarabi Mincho";
+  font-family: 'Noto Serif JP', serif;
   font-size: 25px;
   padding-left: 10px;
 }
@@ -39,10 +39,10 @@
   object-fit: cover;
 }
 .menu_name {
-  font-family: "Sawarabi Mincho";
+  font-family: 'Noto Serif JP', serif;
 }
 .menu_price {
-  font-family: "Sawarabi Mincho";
+  font-family: 'Noto Serif JP', serif;
   text-align: right;
   font-size: 20px;
   margin-bottom: 30px;
