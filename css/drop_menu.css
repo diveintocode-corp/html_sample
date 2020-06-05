@@ -1,0 +1,14 @@
+.drop_menu_btn {
+  height: 60px;
+}
+.drop_menu {
+  display: none;
+}
+.drop_menu_item {
+  padding: 0 20px;
+  color: #fff;
+  text-decoration: none;
+}
+.display_block {
+  display: block;
+}
