@@ -13,3 +13,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.alert_color {
+  color: #d14539;
+}
+.alert_bg {
+  background: rgba(230,169,171,.5);
+}
