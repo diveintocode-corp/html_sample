@@ -47,3 +47,62 @@
   font-size: 20px;
   margin-bottom: 30px;
 }
+
+.pancake_menu {
+  background: rgba(83,71,65,.5);
+  padding: 20px;
+  margin-top: 50px;
+}
+
+/* メニューアイテムコンポーネント */
+.menu_list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.menu_item {
+  width: 49%;
+  display: flex;
+  flex-direction: row-reverse;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+  margin-bottom: 20px;
+}
+.menu_item_content {
+  width: 45%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+}
+.menu_item_image {
+  width: 55%;
+  object-fit: cover;
+  height: 300px;
+}
+.menu_item_price {
+  color: #42210b;
+  font-size: 18px;
+  text-align: right;
+}
+
+.menu_item_title {
+  font-size: 18px;
+  font-family: 'Noto Serif JP', serif;
+}
+
+/* ボタンコンポーネント */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+}
+.btn:hover {
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+.btn-detail {
+  background: #2e58a6;
+  color: #fff;
+}

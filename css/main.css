@@ -55,6 +55,8 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+.menu_list_recommended {
   padding-bottom: 50px;
 }
 .recommended_menu_item {
