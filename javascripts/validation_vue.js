@@ -1,22 +1,20 @@
 const app = new Vue({
   el: '#app',
-  data() {
-    return {
-      errorMessage: 'Eメールが一致しません',
-      confirmView: false,
-      formData: {
-        name: '',
-        email: '',
-        emailConfirm: '',
-        content: '',
-        region: '',
-      },
-      regions: [
-        '東北',
-        '関東',
-        '関西'
-      ]
-    }
+  data: {
+    errorMessage: 'Eメールが一致しません',
+    confirmView: false,
+    formData: {
+      name: '',
+      email: '',
+      emailConfirm: '',
+      content: '',
+      region: '',
+    },
+    regions: [
+      '東北',
+      '関東',
+      '関西'
+    ]
   },
   computed: {
     validation: function() {
