@@ -20,6 +20,7 @@
 }
 .concept_image {
   width: 35%;
+  min-height: 400px;
 }
 /* @media screen and (max-width: 768px) {
   .concept_inner {
