@@ -2,15 +2,28 @@
 <html>
   <head>
     <title>DIC cafe</title>
-    <link href="css/nomalize.css" rel="stylesheet">
-    <link href="css/common.css" rel="stylesheet">
-    <link href="css/contact.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="css/nomalize.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <link href="css/contact.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header class="sub_header">
       <nav class="header_nav">
-        <a href="index.html"><img src="images/sample_logo_k.png" class="logo"></a>
+        <a href="index.html">
+          <img src="images/sample_logo_k.png" class="logo"
+        /></a>
         <ul class="global_nav">
           <a href="index.html" class="global_nav_item">
             <li>Home</li>
@@ -24,47 +37,98 @@
         </ul>
       </nav>
     </header>
-    <section class="section_inner">
-      <div class="section_title">
-        <h1>CONTACT</h1>
-        <p>お問い合わせ</p>
-      </div>
-      <form action="#" method="POST">
-        <table class="contact">
-          <tr class="contact_line">
-            <td class="contact_sign"><label for="name">お名前</label></td>
-            <td class="contact_input"><input type="text" name="name" id="name"></td>
-          </tr>
-          <tr class="contact_line">
-            <td class="contact_sign"><label for="phonenumber">ご連絡先</label></td>
-            <td class="contact_input"><input type="tel" name="phonenumber" id="phonenumber"></td>
-          </tr>
-          <tr class="contact_line">
-            <td class="contact_sign"><label for="region">お住いの地域</label></td>
-            <td>
-              <select id="region">
-                <option value="0">選択してください</option>
-                <option value="1">北海道</option>
-                <option value="2">東北</option>
-                <option value="3">関東</option>
-                <option value="4">中部</option>
-                <option value="5">近畿</option>
-                <option value="6">中国・四国</option>
-                <option value="7">九州</option>
-              </select>
-            </td>
-          </tr>
-          <tr class="contact_content">
-            <td class="contact_sign"><label for="content">内容</label></td>
-            <td class="contact_input"><textarea name="content" id="content"></textarea></td>
-          </tr>
-        </table>
-        <div class="contact_btn_area">
-          <button type="reset" class="contact_btn reset_btn">リセット</button>
-          <button type="submit" class="contact_btn submit_btn">送信する</button>
+    <div id="app">
+      <v-app>
+        <section class="section_inner">
+          <div class="section_title">
+            <h1>CONTACT</h1>
+            <p>お問い合わせ</p>
+          </div>
+          <v-form v-model="valid" ref="form">
+            <v-text-field
+              v-model="form.name"
+              :rules="[rules.required]"
+              outlined
+              label="お名前(必須)"
+            ></v-text-field>
+            <v-text-field
+              v-model="form.tel"
+              :rules="[rules.tel]"
+              outlined
+              label="ご連絡先(必須)"
+            ></v-text-field>
+            <v-select
+              v-model="form.area"
+              outlined
+              label="お住まいの地域"
+              item-text="label"
+              :items="aretItems"
+            ></v-select>
+            <v-textarea
+              v-model="form.text"
+              outlined
+              label="お問い合わせ内容(必須)"
+              :rules="[rules.required]"
+            ></v-textarea>
+          </v-form>
+          <div class="contact_btn_area">
+            <v-btn :disabled="isDisabledResetButton" @click="onClickReset"
+              >リセット</v-btn
+            >
+            <v-btn
+              :disabled="isDisabledSendButton"
+              color="primary"
+              @click="onClickSend"
+              >送信する</v-btn
+            >
+          </div>
+        </section>
+        <v-dialog v-model="dialog" max-width="600">
+          <v-card class="pa-5">
+            <v-card-title>送信確認</v-card-title>
+            <v-card-subtitle class="pt-1"
+              >以下の内容で送信します。よろしいですか？</v-card-subtitle
+            >
+            <v-card-text>
+              <v-row class="pt-3">
+                <v-col cols="3">お名前</v-col>
+                <v-col>{{form.name}}</v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="3">ご連絡先</v-col>
+                <v-col>{{form.tel}}</v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="3">お住まいの地域</v-col>
+                <v-col>{{form.area}}</v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="3">お問合せ内容</v-col>
+                <v-col>
+                  <p style="white-space: pre">{{form.text}}</p>
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <div style="display: flex; justify-content: flex-end; gap: 12px">
+              <v-btn @click="dialog = false">閉じる</v-btn>
+              <v-btn color="primary" @click="onClickSubmit">送信</v-btn>
+            </div>
+          </v-card>
+        </v-dialog>
+        <div v-if="isLoading">
+          <v-overlay :value="isLoading" style="z-index: 10000">
+            <v-progress-circular
+              size="70"
+              color="primary"
+              indeterminate
+            ></v-progress-circular>
+          </v-overlay>
         </div>
-      </form>
-    </section>
+        <v-snackbar v-model="snackbar" :timeout="2000">
+          {{ "送信しました" }}
+        </v-snackbar>
+      </v-app>
+    </div>
     <footer class="footer">
       <nav>
         <ul class="footer_nav">
@@ -79,12 +143,128 @@
           </a>
           <a href="index.html" class="footer_nav_item">
             <li>
-              <img src="images/sample_logo_w.png" class="footer_logo">
+              <img src="images/sample_logo_w.png" class="footer_logo" />
             </li>
           </a>
         </ul>
       </nav>
       <p class="footer_right">© DIVE INTO CODE Corp. All RIGHTS RESERVED.</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+      const vue = new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+        data() {
+          return {
+            form: {
+              name: null,
+              tel: null,
+              area: null,
+              text: null,
+            },
+            rules: {
+              required: (value) => !!value || "入力してください",
+              email: (value) =>
+                /.+@.+\\..+/.test(value) ||
+                "メールアドレスの形式が正しくありません",
+              tel: (value) =>
+                /^(0[5-9]0[0-9]{8}|0[1-9][1-9][0-9]{7})$/.test(
+                  value?.replace(/[━.*‐.*―.*－.*\-.*ー.*\-]/gi, "")
+                ) || "電話番号の形式が正しくありません",
+              max: (value) =>
+                (value && value.length <= 100) ||
+                "100文字以下で入力してください",
+            },
+            valid: true,
+            isDisabledSendButton: true,
+            dialog: false,
+            isLoading: false,
+            snackbar: false,
+            aretItems: [
+              {
+                id: 1,
+                label: "北海道",
+              },
+              {
+                id: 2,
+                label: "東北",
+              },
+              {
+                id: 3,
+                label: "関東",
+              },
+              {
+                id: 4,
+                label: "中部",
+              },
+              {
+                id: 5,
+                label: "近畿",
+              },
+              {
+                id: 6,
+                label: "中国・四国",
+              },
+              {
+                id: 7,
+                label: "九州",
+              },
+            ],
+          };
+        },
+        computed: {
+          isDisabledResetButton() {
+            return (
+              !this.form.name &&
+              !this.form.tel &&
+              !this.form.area &&
+              !this.form.text
+            );
+          },
+        },
+        watch: {
+          form: {
+            handler: (val) => {
+              if (
+                vue.rules.required(vue.form.name) === true &&
+                vue.rules.required(vue.form.tel) === true &&
+                vue.rules.tel(vue.form.tel) === true &&
+                vue.rules.required(vue.form.text) === true
+              ) {
+                vue.isDisabledSendButton = false;
+              } else {
+                vue.isDisabledSendButton = true;
+              }
+            },
+            deep: true,
+          },
+        },
+        methods: {
+          onClickReset() {
+            this.form = {
+              name: null,
+              tel: null,
+              area: null,
+              text: null,
+            };
+            this.$refs.form.resetValidation();
+          },
+          onClickSend() {
+            this.dialog = true;
+          },
+          onClickSubmit() {
+            this.isLoading = true;
+            this.dialog = false;
+            setTimeout(() => {
+              this.isLoading = false;
+              this.snackbar = true;
+            }, 4000);
+          },
+        },
+      });
+    </script>
   </body>
 </html>

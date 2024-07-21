@@ -20,6 +20,7 @@
 }
 .concept_image {
   width: 35%;
+  min-height: 400px;
 }
 /* @media screen and (max-width: 768px) {
   .concept_inner {
@@ -58,7 +59,8 @@
   flex-wrap: wrap;
 }
 .menu_list_recommended {
-  padding-bottom: 50px;
+  width: 100%;
+  /* padding-bottom: 50px; */
 }
 .recommended_menu_item {
   width: 49%;
@@ -133,4 +135,11 @@
 }
 
 
+.mb-m {
+  margin-bottom: 20px;
+}
 
+.flex {
+  display: flex;
+  justify-content: center;
+}

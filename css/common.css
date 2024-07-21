@@ -51,6 +51,7 @@ body {
 .global_nav_item:hover {
   background: #fff;
   color: #42210b;
+  cursor: pointer;
 }
 /* メインセクション */
 .section_inner {

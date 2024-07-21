@@ -41,6 +41,7 @@
 .contact_btn_area {
   display: flex;
   justify-content: center;
+  gap: 20px;
   padding: 20px 0;
 }
 .contact_btn {
