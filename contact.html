@@ -60,9 +60,18 @@
             <v-select
               v-model="form.area"
               outlined
+              clearable
               label="お住まいの地域"
               item-text="label"
-              :items="aretItems"
+              :items="areaItems"
+            ></v-select>
+            <v-select
+              v-model="form.gender"
+              outlined
+              clearable
+              label="性別"
+              item-text="label"
+              :items="genderItems"
             ></v-select>
             <v-textarea
               v-model="form.text"
@@ -101,6 +110,10 @@
               <v-row>
                 <v-col cols="3">お住まいの地域</v-col>
                 <v-col>{{form.area}}</v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="3">性別</v-col>
+                <v-col>{{form.gender}}</v-col>
               </v-row>
               <v-row>
                 <v-col cols="3">お問合せ内容</v-col>
@@ -161,6 +174,7 @@
           return {
             form: {
               name: null,
+              gender: null,
               tel: null,
               area: null,
               text: null,
@@ -172,7 +186,8 @@
                 "メールアドレスの形式が正しくありません",
               tel: (value) =>
                 /^(0[5-9]0[0-9]{8}|0[1-9][1-9][0-9]{7})$/.test(
-                  value?.replace(/[━.*‐.*―.*－.*\-.*ー.*\-]/gi, "")
+                  value?.replace(/[-━.*‐.*―.*－.*\-.*ー.*\-]/gi, "")
+                  // value?.replace(/[━.*‐.*―.*－.*\-.*ー.*\-]/gi, "")
                 ) || "電話番号の形式が正しくありません",
               max: (value) =>
                 (value && value.length <= 100) ||
@@ -183,7 +198,21 @@
             dialog: false,
             isLoading: false,
             snackbar: false,
-            aretItems: [
+            genderItems: [
+              {
+                id: 1,
+                label: "男性",
+              },
+              {
+                id: 2,
+                label: "女性",
+              },
+              {
+                id: 3,
+                label: "その他",
+              },
+            ],
+            areaItems: [
               {
                 id: 1,
                 label: "北海道",
